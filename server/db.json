@@ -1,0 +1,32 @@
+{
+    "Objekte": [{
+            "id": 1,
+            "name": "Hosenanzug",
+            "Größe": 40,
+            "Lager": "Garderobe",
+            "Zustand": "neu",
+            "Abgabedatum": "24.02.2023",
+            "Trennung": "verkaufen",
+            "Grund": "zu eng"
+        }, {
+            "id": 2,
+            "name": "Jeanshose",
+            "Größe": 40,
+            "Lager": "Garderobe",
+            "Zustand": " nicht mehr neu",
+            "Abgabedatum": "24.02.2023",
+            "Trennung": "verschenken",
+            "Grund": "langweilig"
+        },
+        {
+            "id": 3,
+            "name": "T-shirt",
+            "Größe": 40,
+            "Lager": "Garderobe",
+            "Zustand": " defekt",
+            "Abgabedatum": "24.02.2023",
+            "Trennung": "entsorgen",
+            "Grund": "defekt"
+        }
+    ]
+}

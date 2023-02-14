@@ -1,0 +1,58 @@
+<p>objekt-list works!</p>
+
+<div class="container custom-container-2">
+    <!-- Show it when there is no objekt -->
+    <div class="no-data text-center" *ngIf="Objekt.length == 0">
+        <p>There is no objekt added yet!</p>
+        <button class="btn btn-outline-primary" routerLink="/create-objekt">
+        Add Objekt
+      </button>
+    </div>
+    <!--Object list table, it hides when there is no object -->
+    <div *ngIf="Objekt.length !== 0">
+        <h3 class="mb-3 text-center">Objektlist</h3>
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Objekt Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Groesse</th>
+                        <th scope="col">Lager</th>
+                        <th scope="col">Zustand</th>
+                        <th scope="col">Anfang der Verloesung</th>
+                        <th scope="col">Ende der Verloesung</th>
+                        <th scope="col">Kurz Beschreibung</th>
+                        <th scope="col">Trennungsart</th>
+                        <th scope="col">Trennungsgrund</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let objektDetails of Objekt">
+                        <td>{{ objektDetails.id }}</td>
+                        <td>{{ objektDetails.name }}</td>
+                        <td>{{ objektDetails.groesse }}</td>
+                        <td>{{ objektDetails.lager }}</td>
+                        <td>{{ objektDetails.zustand }}</td>
+                        <td>{{ objektDetails.verloesungsanfang }}</td>
+                        <td>{{ objektDetails.verloesungsende }}</td>
+                        <td>{{ objektDetails.kurz_Beschreibung }}</td>
+                        <td>{{ objektDetails.art_der_Trennung }}</td>
+                        <td>{{ objektDetails.grund_der_Trennung }}</td>
+
+
+
+                        <td>
+                            <span class="edit" routerLink="/objekt-edit/{{ objektDetails.id }}">Edit</span>
+                            <span class="delete" (click)="deleteObjekt(objektDetails.id)">Delete</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
