@@ -11,8 +11,10 @@ import { retry, catchError } from 'rxjs/operators';
 export class RestApiService {
   
   // Define API
-  apiURL = 'http://localhost:3000';
+  apiURL = 'http://localhost:3500';
+  private api5='http://getridofit.com/create-objekt'
   constructor(private http: HttpClient) {}
+
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/
@@ -35,7 +37,7 @@ export class RestApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
   // HttpClient API post() method => Create objekt
-  createObjekt(objekt: any): Observable<Objekt> {
+  /* createObjekt(objekt: any): Observable<Objekt> {
     return this.http
       .post<Objekt>(
         this.apiURL + '/objekte',
@@ -43,14 +45,19 @@ export class RestApiService {
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));
-  }
- 
+  } */
+ createObjekt(objekt:Objekt):Observable<Objekt>{
+  return this.http.post<Objekt>(this.apiURL,objekt)
+    //,this.httpOptions)
+ // .pipe(retry(1), catchError(this.handleError));
+ }
   // HttpClient API put() method => Update objekt
-  updateObjekt(id: any, objekt: any): Observable<Objekt> {
+  updateObjekt(id: any, objekt: Objekt): Observable<Objekt> {
     return this.http
       .put<Objekt>(
-        this.apiURL + '/objekte/' + id,
-        JSON.stringify(objekt),
+        this.apiURL + '/objekt/' + id,
+      //  JSON.stringify(objekt),
+      objekt,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));

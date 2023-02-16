@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'objekt-create', component: ObjektCreateComponent },
   { path: 'objekt-list', component: ObjektListComponent },
   { path: 'objekt-edit/:id', component: ObjektEditComponent },
-  { path: 'objekt-kategorie/:id', component: ObjektKategorieComponent }
+  { path: 'objekt-kategorie/:id', component: ObjektKategorieComponent },
+  
 ];
 
 @NgModule({

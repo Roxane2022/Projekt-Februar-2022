@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
+import { Objekt } from '../shared/objekt';
 
 @Component({
   selector: 'app-objekt-kategorie',
@@ -7,4 +9,47 @@ import { Component } from '@angular/core';
 })
 export class ObjektKategorieComponent {
 
+
+/* deletekategorie(_t12: number) {
+throw new Error('Method not implemented.');
+}
+addkategorie() {
+throw new Error('Method not implemented.');
+} */
+//form: FormGroup<any>;
+  objekte: Objekt[] = [];
+  form!: FormGroup<any>;
+
+
+
+}
+/* @Component({
+  selector: 'form-array-example',
+  templateUrl: 'form-array-example.component.html',
+  styleUrls: ['form-array-example.component.scss']
+}) */
+export class FormArrayExampleComponent {
+
+    form = this.fb.group({
+       // ... other form controls ...
+        objekte: this.fb.array([])
+    });
+
+    constructor(private fb:FormBuilder) {}
+  
+    get objekte() {
+      return this.form.controls["objekte"] as FormArray;
+    }
+
+    addkategorie() {
+      const objektForm = this.fb.group({
+        title: ['', Validators.required],
+        level: ['beginner', Validators.required]
+      });
+      this.objekte.push(objektForm);
+    }
+
+    deletekategorie(objektIndex: number) {
+      this.objekte.removeAt(objektIndex);
+    }
 }
