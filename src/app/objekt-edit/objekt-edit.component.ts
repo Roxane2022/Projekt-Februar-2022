@@ -27,7 +27,7 @@ export class ObjektEditComponent implements OnInit {
   updateObjekt() {
     if(window.confirm('Are you sure, you want to update?')){
       this.restApi.updateObjekt(this.id, this.objektData).subscribe(data => {
-        this.router.navigate(['/objekte-list'])
+        this.router.navigate(['/list'])
       })
     }
   }

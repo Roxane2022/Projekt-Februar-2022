@@ -1,146 +1,30 @@
-<p>
+<h1>{{userName}}'s Motivation Slogan for the Raffle.:</h1>
+<div *ngIf="msg" class="msg">{{msg}}</div>
 
+<form *ngIf="contacts" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <h3 highlight>{{ contact.name }}</h3>
 
-
-
-    <!-- <table class="container custom-container">
-        <thead>
-            <h2 class="mb-3 text-center"> Create Object </h2>
-        </thead>
-        <tr class="form-group">
-            <td>
-                <p>Objekt ID: </p>
-            </td>
-            <td>
-                <input type="number" [(ngModel)]="dataObjekt.id" class="form-control" placeholder="id">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Name des Objekts:</p>
-            </td>
-            <td>
-                <input type="text" [(ngModel)]="dataObjekt.name" class="form-control" placeholder="Name">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Groesse:</p>
-            </td>
-            <td>
-                <input type="number" [(ngModel)]="dataObjekt.groesse" class="form-control" placeholder=40>
-            </td>
-
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Lager: </p>
-            </td>
-            <td>
-                <input type="text" [(ngModel)]="dataObjekt.lager" class="form-control" placeholder="Z.B: Kleiderschrank">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Kurze Beschreibung:</p>
-            </td>
-            <td>
-                <input type="text" [(ngModel)]="dataObjekt.kurz_Beschreibung" class="form-control" placeholder="Z.B: Nur einmal getragen">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Anfang der Verlosung:</p>
-            </td>
-            <td>
-                <input type="date" [(ngModel)]="dataObjekt.verloesungsanfang" class="form-control" placeholder="Anfang der Verlosung">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Ende der Verlosung:</p>
-            </td>
-            <td>
-                <input type="date" [(ngModel)]="dataObjekt.verloesungsende" class="form-control" placeholder="Ende der Verlosung">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Art der Trennung:</p>
-            </td>
-            <td>
-                <input type="text" [(ngModel)]="dataObjekt.art_der_Trennung" class="form-control" placeholder="Z.B: verschenken">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-                <p>Grund der Trennung:</p>
-            </td>
-            <td>
-                <input type="text" [(ngModel)]="dataObjekt.grund_der_Trennung" class="form-control" placeholder="Z.B: Zu eng geworden">
-            </td>
-        </tr>
-        <tr class="form-group">
-            <td>
-
-            </td>
-            <td>
-                <button class="btn btn-success btn-lg btn-block" (click)="addObjekt()">Objekt hinzufuegen</button>
-            </td>
-        </tr>
-
-
-
-    </table> -->
-    <div class="container custom-container">
-        <div class="col-md-12">
-            <h3 class="mb-3 text-center">Create Object</h3>
-            <form #ObjektForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-                <div class="form-group">
-                    <label for="name">Objekt ID: </label>
-                    <input name="id" type="number" [(ngModel)]="dataObjekt.id" class="form-control" placeholder="id">
-                </div>
-                <div class="form-group">
-                    <label for="name">Name des Objekts: </label>
-                    <input name="name" type="text" [(ngModel)]="dataObjekt.name" class="form-control" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="name">Groesse: </label>
-                    <input name="Groesse" type="number" [(ngModel)]="dataObjekt.groesse" class="form-control" placeholder=40>
-                </div>
-                <div class="form-group">
-                    <label for="name">Lager: </label>
-                    <input name="Lager" type="text" [(ngModel)]="dataObjekt.lager" class="form-control" placeholder="lager">
-                </div>
-                <div class="form-group">
-                    <label for="name">Zustand: </label>
-                    <input name="Zustand" type="text" [(ngModel)]="dataObjekt.zustand" class="form-control" placeholder="zustand">
-                </div>
-                <div class="form-group">
-                    <label for="name">Kurze Beschreibung: </label>
-                    <input name="Kurz_beschreibung" type="text" [(ngModel)]="dataObjekt.kurz_Beschreibung" class="form-control" placeholder="Kurz Beschreibung">
-                </div>
-                <div class="form-group">
-                    <label for="name">Anfang Der Verlosung: </label>
-                    <input name="verloesungsanfang" type="date" [(ngModel)]="dataObjekt.verloesungsanfang" class="form-control" placeholder="MM/dd/yyyy">
-                </div>
-                <div class="form-group">
-                    <label for="name">Ende Der Verlosung: </label>
-                    <input name="verloesungsende" type="date" [(ngModel)]="dataObjekt.verloesungsende" class="form-control" placeholder="'MM/dd/yyyy'">
-                </div>
-                <div class="form-group">
-                    <label for="name">Art Der Verlosung: </label>
-                    <input name="Verlosungsart" type="text" [(ngModel)]="dataObjekt.art_der_Trennung" class="form-control" placeholder="Trennungsart">
-                </div>
-                <div class="form-group">
-                    <label for="name">Grund der Verlosung: </label>
-                    <input name="Verlosungsgrund" type="text" [(ngModel)]="dataObjekt.grund_der_Trennung" class="form-control" placeholder="Trennungsgrund">
-                </div>
-                <div class="form-group">
-                    <button [disabled]="ObjektForm.form.invalid" class="btn btn-primary" type="submit">Add an Object</button>
-
-                </div>
-            </form>
+    <div class="form-group">
+        <label for="name">Motivation</label>
+        <input type="text" formControlName="name" required>
+        <div *ngIf="!contactForm.controls['name'].valid && contactForm.controls['name'].touched" class="alert">
+            Motivation text is required.
         </div>
+
     </div>
-    <!--<button class="btn btn-success btn-lg btn-block" (click)="addObjekt(objektDetails)">Add Objekt</button>-->
+
+
+
+
+
+    <div class="button-group">
+        <button type="submit" class="btn btn-default" [disabled]="!contactForm.valid">
+    Save</button>
+
+        <button type="button" class="btn" (click)="next()" [disabled]="!contactForm.valid && contactForm.touched">
+    Next Movation</button>
+
+        <button type="button" class="btn" (click)="newContact()">
+    New Motivation</button>
+    </div>
+</form>

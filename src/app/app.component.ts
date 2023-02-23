@@ -1,32 +1,30 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
-@Component({
+/* @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Get-Rid-Of-It';
-    //x:number = Math.random();
-    x=Math.floor(Math.random() * 10)+1;
-   y:number=7;
-   z=this.x*this.y;
-    
-   
-   
-    summe= function(a:number,b:number):number{
-    
-   let z= a+b;
-   return z;
-   }
-   multipliziere=function(a:number,b:number):number{
-    let z = a*b;
-    return z;
-   }
+ */
 
-   dividiere=function(a:number,b:number):number{
-    let z = a/b;
-    return z;
-   }
-   
+
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <app-user></app-user>
+    <nav>
+      <div><a routerLink="contact" routerLinkActive="active" ariaCurrentWhenActive="page">Motivation</a></div>
+     <div> <a routerLink="items" routerLinkActive="active" ariaCurrentWhenActive="page">Items</a></div>
+      <div><a routerLink="customers" routerLinkActive="active" ariaCurrentWhenActive="page">Categories</a></div>
+    </nav>
+    <router-outlet></router-outlet>
+  `,
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+  [x: string]: any;
 }
+

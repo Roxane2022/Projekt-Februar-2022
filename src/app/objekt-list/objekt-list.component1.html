@@ -1,0 +1,50 @@
+<p>objekt-list works!</p>
+
+
+<div>
+    <ul class="objekte">
+        <li *ngFor="let objekt of objekte" (click)="onSelect(objekt)" [class.selected]="objekt === selectedObjekt">
+            <button class="delete-button" (click)="deleteObjekt(objekt)">Delete</button>
+            <div class="objekt-element">
+                <div class="badge">{{objekt.id}}</div>
+                <div class="name">{{objekt.name}}</div>
+
+
+            </div>
+        </li>
+    </ul>
+    <div class="editarea">
+
+        <button (click)="enableAddMode()">Add New Objekt</button>
+
+        <div *ngIf="selectedObjekt">
+
+            <div class="editfields">
+                <div>
+                    <label>id: </label>
+                    <input [(ngModel)]="selectedObjekt.id" placeholder="id" *ngIf="addingObjekt" />
+                    <label *ngIf="!addingObjekt" class="value">{{selectedObjekt.id}}</label>
+                </div>
+
+                <div *ngIf="selectedObjekt">
+                    <h2>{{selectedObjekt.name | uppercase}} Details</h2>
+                    <div>id: {{selectedObjekt.id}}</div>
+                    <div>
+                        <label for="Objekt-name">name: </label>
+                        <input id="Objekt-name" [(ngModel)]="selectedObjekt.name" placeholder="name">
+                    </div>
+                </div>
+
+                <div>
+                    <label>name: </label>
+                    <input [(ngModel)]="selectedObjekt.name" placeholder="name" />
+                </div>
+
+            </div>
+            <button (click)="cancel()">Cancel</button>
+            <button (click)="save()">Save</button>
+
+        </div>
+    </div>
+</div>
+<app-objekt-create [objekt]="selectedObjekt"></app-objekt-create>

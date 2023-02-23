@@ -1,59 +1,88 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Objekt } from '../shared/objekt';
-import { Objekte } from '../testobjekt';
-import { Router } from '@angular/router';
-import { RestApiService } from '../shared/rest-api.service';
-import { objektklasse } from '../shared/Objektklasse';
+// Exact copy except import UserService from greeting
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+import {UserService} from '../user/user.service';
+import{ContactModule}from'./objekt-create.module';
+import {Contact, ContactService} from './objekt-create.service';
+//import { Item, ItemService } from '..objekt-list/objekt-list.service';
 
 @Component({
-  selector: 'create Objekt',//'app-objekt-create',
+  selector: 'app-contact',
   templateUrl: './objekt-create.component.html',
   styleUrls: ['./objekt-create.component.css']
 })
-export class ObjektCreateComponent implements OnInit{
-  dataObjekt= new objektklasse(1, "Hosenanzug",40, "Kleiderschrank","neu",new Date("2023.02.23"),new Date("2023.02.28"),"Nie getragen","verkaufen","langweilig geworden");
-    /* objektDetails:Objekt={
-    id: 0,
-    name: '',
-    groesse: 0,
-    lager: '',
-    zustand: '',
-    verloesungsanfang:new Date(),
-    verloesungsende: new Date(),
-    kurz_Beschreibung: '',
-    art_der_Trennung: '',
-    grund_der_Trennung: ''
-  }   */
-  //constructor(private employ:RestApiService ){}
-  constructor(public restApi: RestApiService, public router: Router) {}
-   ngOnInit(): void {
-   console.log("my App initialisation");
-  } 
+export class ContactComponent implements OnInit {
+  contact!: Contact;
+  contacts: Contact[] = [];
 
-  //public meinObjekt=Objekte
-selectedObjekt?: Objekt;
-onSelect(diesesObjekt:Objekt): void {
-  this.selectedObjekt = diesesObjekt;
+  msg = 'Loading slogans ...';
+  userName = '';
+
+  contactForm: FormGroup;
+
+  constructor(
+      private contactService: ContactService, userService: UserService, private fb: FormBuilder) {
+    this.contactForm = this.fb.group({name: ['', Validators.required]});
+    this.userName = userService.userName;
+  } 
+/*   constructor(
+    private contactService: ContactService, item: Item, private fb: FormBuilder) {
+  this.contactForm = this.fb.group({name: ['', Validators.required]});
+  this.name = item.name;
+}
+ */
+  ngOnInit() {
+    this.setupForm();
+  }
+
+  setupForm() {
+    this.contactService.getContacts().subscribe(contacts => {
+      this.msg = '';
+      this.contacts = contacts;
+      this.contact = contacts[0];
+      this.contactForm.get('name')!.setValue(this.contact.name);
+    });
+  }
+
+  next() {
+    let ix = 1 + this.contacts.indexOf(this.contact);
+    if (ix >= this.contacts.length) {
+      ix = 0;
+    }
+    this.contact = this.contacts[ix];
+    console.log(this.contacts[ix]);
+  }
+
+  onSubmit() {
+    const newName = this.contactForm.get('name')!.value;
+    this.displayMessage('Saved ' + newName);
+    this.contact.name = newName;
+  }
+
+  newContact() {
+    this.displayMessage('New Motivation');
+    this.contactForm.get('name')!.setValue('');
+    this.contact = {id: 42, name: ''};
+    this.contacts.push(this.contact);
+  }
+
+  /** Display a message briefly, then remove it. */
+  displayMessage(msg: string) {
+    this.msg = msg;
+    setTimeout(() => this.msg = '', 1500);
+  }
 }
 
-onSubmit() {//dataObjekt:Objekt
-  console.log(this.dataObjekt);
 
-  //this.employ.createObjekt(this.dataObjekt).subscribe(objekt =>console.log("erfolgreich gespeichert",objekt))
-    //this.restApi.createObjekt(this.dataObjekt).subscribe()
-    //((data: {}) => {
-     // this.router.navigate(['/objekt-list']);
-    //});
-  }
 
 
   
-}
 
 
+  
 
+  
+  
 
-
-
-
-
+ 

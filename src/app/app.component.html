@@ -1,12 +1,19 @@
 <h1>{{title}}</h1>
 
-
 <ul>
     <li class="nav-item">
-        <a routerlink='/objekt-create' routerLinkActive=" active " class="nav-link ">Add an object</a>
+        <h1>{{title}}</h1>
+        <nav>
+            <!-- <a routerLink="/objekt-create">Dashboard</a> -->
+            <a routerLink="/objekt-list">Meine ObjektList</a>
+        </nav>
+
+        <a routerlink='/' routerLinkActive=" active " class="nav-link ">Dashboard</a>
 
     </li>
 
 
 </ul>
+
 <router-outlet></router-outlet>
+<!-- <app-root></app-root> -->

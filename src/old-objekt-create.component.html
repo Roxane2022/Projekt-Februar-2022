@@ -1,0 +1,53 @@
+<div class="container custom-container">
+    <div class="col-md-12">
+        <h3 class="mb-3 text-center">Create Object</h3>
+        <form #ObjektForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <label for="name">Objekt ID: </label>
+                <input name="id" type="number" [(ngModel)]="dataObjekt.id" class="form-control" placeholder="id">
+            </div>
+            <div class="form-group">
+                <label for="name">Name des Objekts: </label>
+                <input name="name" type="text" [(ngModel)]="dataObjekt.name" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Groesse: </label>
+                <input name="Groesse" type="number" [(ngModel)]="dataObjekt.groesse" class="form-control" placeholder=40>
+            </div>
+            <div class="form-group">
+                <label for="name">Lager: </label>
+                <input name="Lager" type="text" [(ngModel)]="dataObjekt.lager" class="form-control" placeholder="lager">
+            </div>
+            <div class="form-group">
+                <label for="name">Zustand: </label>
+                <input name="Zustand" type="text" [(ngModel)]="dataObjekt.zustand" class="form-control" placeholder="zustand">
+            </div>
+            <div class="form-group">
+                <label for="name">Kurze Beschreibung: </label>
+                <input name="Kurz_beschreibung" type="text" [(ngModel)]="dataObjekt.kurz_Beschreibung" class="form-control" placeholder="Kurz Beschreibung">
+            </div>
+            <div class="form-group">
+                <label for="name">Anfang Der Verlosung: </label>
+                <input name="verloesungsanfang" type="date" [(ngModel)]="dataObjekt.verloesungsanfang" class="form-control" placeholder="MM/dd/yyyy">
+            </div>
+            <div class="form-group">
+                <label for="name">Ende Der Verlosung: </label>
+                <input name="verloesungsende" type="date" [(ngModel)]="dataObjekt.verloesungsende" class="form-control" placeholder="'MM/dd/yyyy'">
+            </div>
+            <div class="form-group">
+                <label for="name">Art Der Verlosung: </label>
+                <input name="Verlosungsart" type="text" [(ngModel)]="dataObjekt.art_der_Trennung" class="form-control" placeholder="Trennungsart">
+            </div>
+            <div class="form-group">
+                <label for="name">Grund der Verlosung: </label>
+                <input name="Verlosungsgrund" type="text" [(ngModel)]="dataObjekt.grund_der_Trennung" class="form-control" placeholder="Trennungsgrund">
+            </div>
+            <div class="form-group">
+                <button [disabled]="ObjektForm.form.invalid" class="btn btn-primary" type="submit">Add an Object</button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--<button class="btn btn-success btn-lg btn-block" (click)="addObjekt(objektDetails)">Add Objekt</button>-->
